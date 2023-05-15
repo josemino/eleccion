@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Elección del Orden Estudiantil - Consejo de Particiapción</title>
+  <style>
+    #protectedSection {
+      display: none;
+    }
+
+    #usernameInput,
+#passwordInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Estilos para el botón de ingresar */
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+    
+    #message {
+      display: none;
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Autenticación de estudiantes habilitados a votar</h2>
+    <p>Para ingresar debes usar como nombre de usuario y contraseña,</p>
+  <p>tu número de Cédula de Identidad sin los puntos ni el guión.</p>
+  <p>Ejemplo: 12345678</p>
+  <div id="protectedSection">
+    <!-- Contenido protegido -->
+      
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeWPFm-xr3d-GTqK7m2i6kj-kMFA4qs0bq7bnQ90SH1BRKYA/viewform?embedded=true" width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+  </div>
+
+  <div id="passwordForm">
+    <label for="usernameInput">Usuario:</label>
+    <input type="text" id="usernameInput">
+    <br>
+    <label for="passwordInput">Contraseña:</label>
+    <input type="password" id="passwordInput">
+    <br>
+    <button onclick="checkPassword()">Ingresar</button>
+  </div>
+
+  <div id="message">
+    <p>Ya has emitido tu voto, por lo cual no pueden volver a votar.</p>
+     <p>Tu datos de ingreso han sido bloqueados para evitar votos duplicados o la emisión de más de un voto por estudiante</p>
+  </div>
+
+  <script>
+    var users = {
+  "usuario1": "contrasena1",
+  "usuario2": "contrasena2",
+  "usuario3": "contrasena3",
+  "estudiante1": "estudiante1"
+};
+
+function checkPassword() {
+  var username = document.getElementById("usernameInput").value;
+  var password = document.getElementById("passwordInput").value;
+
+  if (users.hasOwnProperty(username) && users[username] === password) {
+    var accessed = localStorage.getItem("accessed");
+
+    if (accessed === null) {
+      localStorage.setItem("accessed", "true");
+      document.getElementById("iframe").style.display = "block";
+    } else if (accessed === "true") {
+      document.getElementById("iframe").style.display = "none";
+      document.getElementById("message").style.display = "block";
+      return;
+    }
+
+    // Otras acciones a realizar cuando el usuario está registrado y se muestra el formulario
+    document.getElementById("protectedSection").style.display = "block";
+    document.getElementById("passwordForm").style.display = "none";
+  } else {
+    alert("Datos de ingreso inválidos. Intenta ingresar de nuevo.");
+  }
+}
+  </script>
+</body>
+</html>
