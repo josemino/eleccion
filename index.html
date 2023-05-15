@@ -39,35 +39,56 @@
   </div>
 
   <script>
-    var users = {
-      "usuario1": "contrasena1",
-      "usuario2": "contrasena2",
-      "usuario3": "contrasena3",
-      "estudiante1": "estudiante1"
-    };
+   var users = {
+  "usuario1": "contrasena1",
+  "usuario2": "contrasena2",
+  "usuario3": "contrasena3",
+  "estudiante1": "estudiante1"
+};
 
-    function checkPassword() {
-      var username = document.getElementById("usernameInput").value;
-      var password = document.getElementById("passwordInput").value;
+function checkPassword() {
+  var username = document.getElementById("usernameInput").value;
+  var password = document.getElementById("passwordInput").value;
 
-      if (users.hasOwnProperty(username) && users[username] === password) {
-        var accessed = localStorage.getItem("accessed");
+  if (users.hasOwnProperty(username) && users[username] === password) {
+    var accessed = getCookie("accessed");
 
-        if (accessed === null) {
-          localStorage.setItem("accessed", "true");
-          document.getElementById("iframe").style.display = "block";
-        } else if (accessed === "true") {
-          document.getElementById("iframe").style.display = "none";
-          document.getElementById("message").style.display = "block";
-          return;
-        }
-
-        document.getElementById("protectedSection").style.display = "block";
-        document.getElementById("passwordForm").style.display = "none";
-      } else {
-        alert("Datos de ingreso inválidos. Intenta ingresar de nuevo.");
-      }
+    if (accessed === "") {
+      setCookie("accessed", "true", 365); // Establecer la cookie por 1 año
+      document.getElementById("iframe").style.display = "block";
+    } else if (accessed === "true") {
+      document.getElementById("iframe").style.display = "none";
+      document.getElementById("message").style.display = "block";
+      return;
     }
+
+    document.getElementById("protectedSection").style.display = "block";
+    document.getElementById("passwordForm").style.display = "none";
+  } else {
+    alert("Datos de ingreso inválidos. Intenta ingresar de nuevo.");
+  }
+}
+
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return "";
+}
   </script>
 </body>
 </html>
