@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bloqueo de sección con contraseña</title>
+  <style>
+    #protectedSection {
+      display: none;
+    }
+
+    #message {
+      display: none;
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="protectedSection">
+    <!-- Contenido protegido -->
+    <h2>Contenido protegido</h2>
+    <p>Este es el contenido que solo será visible si se ingresa la contraseña correcta.</p>
+  
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeWPFm-xr3d-GTqK7m2i6kj-kMFA4qs0bq7bnQ90SH1BRKYA/viewform?embedded=true" width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+  </div>
+
+  <div id="passwordForm">
+    <label for="usernameInput">Usuario:</label>
+    <input type="text" id="usernameInput">
+    <br>
+    <label for="passwordInput">Contraseña:</label>
+    <input type="password" id="passwordInput">
+    <br>
+    <button onclick="checkPassword()">Ingresar</button>
+  </div>
+
+  <div id="message">
+    <p>El acceso a este contenido ya ha sido otorgado previamente.</p>
+  </div>
+
+  <script>
+    var accessed = false;
+
+    function checkPassword() {
+      var username = document.getElementById("usernameInput").value;
+      var password = document.getElementById("passwordInput").value;
+
+      if (username && password) {
+        var users = {
+          "usuario1": "contrasena1",
+          "usuario2": "contrasena2",
+          "usuario3": "contrasena3"
+        };
+
+        if (users.hasOwnProperty(username) && users[username] === password) {
+          if (accessed) {
+            document.getElementById("passwordForm").style.display = "none";
+            document.getElementById("message").style.display = "block";
+            return;
+          }
+
+          accessed = true;
+
+          document.getElementById("protectedSection").style.display = "block";
+          document.getElementById("passwordForm").style.display = "none";
+        } else {
+          alert("Credenciales inválidas. Intenta de nuevo.");
+        }
+      }
+    }
+  </script>
+</body>
+</html>
