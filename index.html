@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario de inicio de sesión</title>
+  <style>
+    /* Estilos CSS para ocultar inicialmente los elementos */
+    #iframe, #message, #protectedSection {
+      display: none;
+    }
+
+/* Estilos para los campos de ingreso de usuario y contraseña */
+  .inputField {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  /* Estilos para el botón de ingresar */
+  .submitButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .submitButton:hover {
+    background-color: #45a049;
+  }
+
+  /* Estilos para el mensaje de error */
+  #message {
+    color: red;
+    margin-top: 10px;
+  }
+  </style>
+</head>
+<body>
+  <h1>Formulario de inicio de sesión</h1>
+
+  <form>
+  <label for="usernameInput">Usuario:</label>
+  <input type="text" id="usernameInput" required class="inputField">
+
+  <label for="passwordInput">Contraseña:</label>
+  <input type="password" id="passwordInput" required class="inputField">
+
+  <button type="button" onclick="checkPassword()" class="submitButton">Ingresar</button>
+</form>
+
+  <div id="iframe">
+    <!-- Contenido del iframe -->
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeWPFm-xr3d-GTqK7m2i6kj-kMFA4qs0bq7bnQ90SH1BRKYA/viewform?embedded=true" width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+  </div>
+
+  <div id="message">
+    <!-- Mensaje para mostrar en accesos posteriores -->
+    <p>El acceso al contenido está bloqueado.</p>
+  </div>
+
+  <div id="protectedSection">
+    <!-- Contenido adicional o acciones a realizar cuando el usuario está registrado -->
+    <h2>Sección protegida</h2>
+    <p>Bienvenido al área protegida.</p>
+  </div>
+
+  <script>
+   var users = {
+  "usuario1": "contrasena1",
+  "usuario2": "contrasena2",
+  "usuario3": "contrasena3",
+  "estudiante1": "estudiante1"
+};
+
+function checkPassword() {
+  var username = document.getElementById("usernameInput").value;
+  var password = document.getElementById("passwordInput").value;
+
+  if (users.hasOwnProperty(username) && users[username] === password) {
+    var accessed = getCookie("accessed");
+
+    if (accessed === "") {
+      setCookie("accessed", "true", 365); // Establecer la cookie por 1 año
+      document.getElementById("iframe").style.display = "block";
+    } else if (accessed === "true") {
+      document.getElementById("iframe").style.display = "none";
+      document.getElementById("message").style.display = "block";
+      return;
+    }
+
+    document.getElementById("protectedSection").style.display = "block";
+    document.getElementById("passwordForm").style.display = "none";
+  } else {
+    alert("Datos de ingreso inválidos. Intenta ingresar de nuevo.");
+  }
+}
+
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return "";
+}
+  </script>
+</body>
+</html>
