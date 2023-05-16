@@ -60,15 +60,15 @@
 
   <div id="protectedSection">
     <!-- Contenido adicional o acciones a realizar cuando el usuario está registrado -->
-    <h2></h2>
-    <p><div id="iframe">
+    <h2>----</h2>
+   <div id="iframe">
     <!-- Contenido del iframe -->
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeWPFm-xr3d-GTqK7m2i6kj-kMFA4qs0bq7bnQ90SH1BRKYA/viewform?embedded=true" width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-  </div></p>
+  </div>
   </div>
 
   <script>
-  var users = {
+ var users = {
   "usuario1": "contrasena1",
   "usuario2": "contrasena2",
   "usuario3": "contrasena3"
@@ -78,11 +78,18 @@ function checkPassword() {
   var username = document.getElementById("usernameInput").value;
   var password = document.getElementById("passwordInput").value;
 
+  if (username === "" || password === "") {
+    alert("Por favor, ingresa el usuario y la contraseña.");
+    return;
+  }
+
   if (verifyCredentials(username, password)) {
     var accessed = localStorage.getItem(username + "_accessed");
 
     if (accessed === "true") {
-      document.getElementById("passwordForm").style.display = "none";
+      document.getElementById("usernameInput").value = "";
+      document.getElementById("passwordInput").value = "";
+      document.getElementById("passwordForm").style.display = "block";
       document.getElementById("message").style.display = "block";
       return;
     }
@@ -99,6 +106,7 @@ function checkPassword() {
 function verifyCredentials(username, password) {
   return users.hasOwnProperty(username) && users[username] === password;
 }
+
 
   </script>
 </body>
