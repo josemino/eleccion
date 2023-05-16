@@ -43,6 +43,7 @@ nav ul li a {
 }
 nav ul li a:hover {
 	background: #FFF;
+	color: #444;
 }
 nav ul li {
     display: inline-block;
