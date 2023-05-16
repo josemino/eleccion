@@ -34,7 +34,8 @@ header {
 }
 
 nav {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
 }
 nav ul li a {
     background: #EEE;
