@@ -1,4 +1,4 @@
-<style>
+
     /* Estilos CSS para ocultar inicialmente los elementos */
    #message, #protectedSection {
       display: none;
@@ -34,4 +34,4 @@
     color: red;
     margin-top: 10px;
   }
-  </style>
+
