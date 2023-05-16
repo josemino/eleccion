@@ -27,6 +27,7 @@ header {
     background-image: url('images/encabezado.png');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center center;	
     padding: 20px 30px;
     max-width: 940px;
     margin: auto;
