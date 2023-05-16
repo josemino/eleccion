@@ -1,7 +1,8 @@
  /* Estilos CSS para la imagen de encabezado, el menú y el texto explicativo */
     .header-image {
-      width: 20%;
-      height: 20%;
+     max-width: 300px; /* Cambia el tamaño según tus necesidades */
+     display: block;
+     margin: 0 auto; /* Centra horizontalmente la imagen */
     }
 
     .menu {
