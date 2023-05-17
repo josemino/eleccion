@@ -1,17 +1,34 @@
-<!doctype html>
-<html lang="en" class="no-js">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="" />
-    <title>Elección del Orden Estudiantil</title>
-    <meta name="description" content="">
-   
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    #fullscreen-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
-
 <body>
-<iframe src="/eleccion/webs/votacion.html"></iframe>
-</body>
+  <iframe id="fullscreen-iframe" src="/eleccion/webs/votacion.html"></iframe>
 
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      var iframe = document.getElementById('fullscreen-iframe');
+      iframe.style.height = window.innerHeight + 'px';
+    });
+
+    window.addEventListener('resize', function() {
+      var iframe = document.getElementById('fullscreen-iframe');
+      iframe.style.height = window.innerHeight + 'px';
+    });
+  </script>
+</body>
 </html>
