@@ -52,6 +52,11 @@ nav ul li {
 nav ul {
     list-style: none;
 }
+.hidden-link {
+	position: absolute;
+	left: -9999px;
+}
+
 #pageContent {
     max-width: 1000px;
     margin: auto;
