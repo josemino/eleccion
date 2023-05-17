@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <title>Decodificar iframe</title>
   <style>
     html, body {
       margin: 0;
@@ -9,7 +11,15 @@
       height: 100%;
     }
 
-    #fullscreen-iframe {
+    #iframeContainer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #iframeContainer iframe {
       width: 100%;
       height: 100%;
       border: none;
@@ -17,18 +27,32 @@
   </style>
 </head>
 <body>
-  <iframe id="fullscreen-iframe" src="/eleccion/webs/votacion.html"></iframe>
+  <div id="iframeContainer"></div>
 
   <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      var iframe = document.getElementById('fullscreen-iframe');
-      iframe.style.height = window.innerHeight + 'px';
-    });
+    // Función para decodificar el código del iframe y mostrarlo en la página
+    function decodificarIframe() {
+      var codigoIframe = '&#x2F;&#x65;&#x6C;&#x65;&#x63;&#x69;&#x6F;&#x6E;&#x2F;&#x77;&#x65;&#x62;&#x73;&#x2F;&#x76;&#x6F;&#x74;&#x61;&#x63;&#x69;&#x6F;&#x6E;&#x2E;&#x68;&#x74;&#x6D;&#x6C;';
+      var decodedCodigoIframe = decodeURIComponent(codigoIframe);
 
-    window.addEventListener('resize', function() {
+      var iframeContainer = document.getElementById('iframeContainer');
+      iframeContainer.innerHTML = decodedCodigoIframe;
+    }
+
+    // Llamada a la función para decodificar y mostrar el iframe
+    decodificarIframe();
+  </script>
+
+  <script>
+    // Ajustar la altura del iframe al cargar y redimensionar la ventana
+    function ajustarAlturaIframe() {
       var iframe = document.getElementById('fullscreen-iframe');
       iframe.style.height = window.innerHeight + 'px';
-    });
+    }
+
+    window.addEventListener('DOMContentLoaded', ajustarAlturaIframe);
+    window.addEventListener('resize', ajustarAlturaIframe);
   </script>
 </body>
 </html>
+
