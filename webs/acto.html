@@ -2,6 +2,10 @@
 <html>
 <head>
   <style>
+    .iframe-container {
+      display: none; /* Oculta el contenedor del iframe */
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -17,11 +21,21 @@
   </style>
 </head>
 <body>
-  <iframe id="fullscreen-iframe" src="/eleccion/webs/votacion.html"></iframe>
+  <div class="iframe-container">
+    <iframe id="fullscreen-iframe"></iframe>
+  </div>
 
   <script>
+    function base64DecodeUrl(url) {
+      var decodedUrl = atob(url);
+      return decodedUrl;
+    }
+
     window.addEventListener('DOMContentLoaded', function() {
       var iframe = document.getElementById('fullscreen-iframe');
+      var encodedUrl = "/eleccion/webs/votacion.html"; // URL codificada en base64
+      var decodedUrl = base64DecodeUrl(encodedUrl);
+      iframe.src = decodedUrl;
       iframe.style.height = window.innerHeight + 'px';
     });
 
