@@ -45,6 +45,10 @@ nav ul li a:hover {
 	background: #FFF;
 	color: #444;
 }
+nav ul li.active {
+	background: #FFF;
+	color: #444;
+}
 nav ul li {
     display: inline-block;
     margin: 10px;
