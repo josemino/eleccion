@@ -18,20 +18,11 @@
   </style>
 </head>
 <body>
-  <iframe id="fullscreen-iframe"></iframe>
+  <iframe src="data:text/html;base64,PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICA8c3R5bGU+CiAgICBodG1sLCBib2R5IHsKICAgICAgbWFyZ2luOiAwOwogICAgICBwYWRkaW5nOiAwOwogICAgICBvdmVyZmxvdzogaGlkZGVuOwogICAgICBoZWlnaHQ6IDEwMCU7CiAgICB9CgogICAgI2Z1bGxzY3JlZW4taWZyYW1lIHsKICAgICAgd2lkdGg6IDEwMCU7CiAgICAgIGhlaWdodDogMTAwJTsKICAgICAgYm9yZGVyOiBub25lOwogICAgfQogIDwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CiAgPGlmcmFtZSBpZD0iZnVsbHNjcmVlbi1pZnJhbWUiIHNyYz0iL2VsZWNjaW9uL3dlYnMvdm90YWNpb24uaHRtbCI+PC9pZnJhbWU+CgogIDxzY3JpcHQ+CiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKCkgewogICAgICB2YXIgaWZyYW1lID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Z1bGxzY3JlZW4taWZyYW1lJyk7CiAgICAgIGlmcmFtZS5zdHlsZS5oZWlnaHQgPSB3aW5kb3cuaW5uZXJIZWlnaHQgKyAncHgnOwogICAgfSk7CgogICAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ3Jlc2l6ZScsIGZ1bmN0aW9uKCkgewogICAgICB2YXIgaWZyYW1lID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Z1bGxzY3JlZW4taWZyYW1lJyk7CiAgICAgIGlmcmFtZS5zdHlsZS5oZWlnaHQgPSB3aW5kb3cuaW5uZXJIZWlnaHQgKyAncHgnOwogICAgfSk7CiAgPC9zY3JpcHQ+CjwvYm9keT4KPC9odG1sPgo="></iframe>
 
   <script>
-    function base64DecodeUrl(url) {
-      var decodedUrl = atob(url);
-      return decodedUrl;
-    }
-
     window.addEventListener('DOMContentLoaded', function() {
       var iframe = document.getElementById('fullscreen-iframe');
-      var encodedUrl = "L2VsZWNjaW9uL3dlYnMvdm90YWNpb24uaHRtbA=="; // URL codificada en base64
-      var decodedUrl = base64DecodeUrl(encodedUrl);
-      iframe.src = decodedUrl;
-      iframe.style.display = 'block'; // Muestra el iframe después de cargar la URL
       iframe.style.height = window.innerHeight + 'px';
     });
 
