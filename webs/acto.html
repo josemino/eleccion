@@ -17,21 +17,12 @@
   </style>
 </head>
 <body>
-  <iframe id="fullscreen-iframe" src="https://josemino.github.io/eleccion/webs/votacion.html"></iframe>
+  <iframe id="fullscreen-iframe" src="/eleccion/webs/votacion.html"></iframe>
 
   <script>
     window.addEventListener('DOMContentLoaded', function() {
       var iframe = document.getElementById('fullscreen-iframe');
       iframe.style.height = window.innerHeight + 'px';
-
-      // Obtener el contenido del iframe
-      var iframeContent = iframe.contentDocument.documentElement.outerHTML;
-
-      // Codificar el contenido a base64
-      var base64Content = btoa(unescape(encodeURIComponent(iframeContent)));
-
-      // Reemplazar el contenido del iframe con el código base64
-      iframe.src = "data:text/html;base64," + base64Content;
     });
 
     window.addEventListener('resize', function() {
