@@ -1,12 +1,37 @@
-// Cadena base64 del iframe
-var base64Data = 'PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICA8c3R5bGU+CiAgICBodG1sLCBib2R5IHsKICAgICAgbWFyZ2luOiAwOwogICAgICBwYWRkaW5nOiAwOwogICAgICBvdmVyZmxvdzogaGlkZGVuOwogICAgICBoZWlnaHQ6IDEwMCU7CiAgICB9CgogICAgI2Z1bGxzY3JlZW4taWZyYW1lIHsKICAgICAgd2lkdGg6IDEwMCU7CiAgICAgIGhlaWdodDogMTAwJTsKICAgICAgYm9yZGVyOiBub25lOwogICAgfQogIDwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CiAgPGlmcmFtZSBpZD0iZnVsbHNjcmVlbi1pZnJhbWUiIHNyYz0iL2VsZWNjaW9uL3dlYnMvdm90YWNpb24uaHRtbCI+PC9pZnJhbWU+CgogIDxzY3JpcHQ+CiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKCkgewogICAgICB2YXIgaWZyYW1lID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Z1bGxzY3JlZW4taWZyYW1lJyk7CiAgICAgIGlmcmFtZS5zdHlsZS5oZWlnaHQgPSB3aW5kb3cuaW5uZXJIZWlnaHQgKyAncHgnOwogICAgfSk7CgogICAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ3Jlc2l6ZScsIGZ1bmN0aW9uKCkgewogICAgICB2YXIgaWZyYW1lID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Z1bGxzY3JlZW4taWZyYW1lJyk7CiAgICAgIGlmcmFtZS5zdHlsZS5oZWlnaHQgPSB3aW5kb3cuaW5uZXJIZWlnaHQgKyAncHgnOwogICAgfSk7CiAgPC9zY3JpcHQ+CjwvYm9keT4KPC9odG1sPgo=';
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página web normal</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="iframeContainer"></div>
 
-// Decodificar la cadena base64
-var decodedData = atob(base64Data);
+    <script>
+        // Cadena base64 del iframe
+        var base64Data = 'PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICA8c3R5bGU+CiAgICBodG1sLCBib2R5IHsKICAgICAgbWFyZ2luOiAwOwogICAgICBwYWRkaW5nOiAwOwogICAgICBvdmVyZmxvdzogaGlkZGVuOwogICAgICBoZWlnaHQ6IDEwMCU7CiAgICB9CgogICAgI2Z1bGxzY3JlZW4taWZyYW1lIHsKICAgICAgd2lkdGg6IDEwMCU7CiAgICAgIGhlaWdodDogMTAwJTsKICAgICAgYm9yZGVyOiBub25lOwogICAgfQogIDwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CiAgPGlmcmFtZSBpZD0iZnVsbHNjcmVlbi1pZnJhbWUiIHNyYz0iL2VsZWNjaW9uL3dlYnMvdm90YWNpb24uaHRtbCI+PC9pZnJhbWU+CgogIDxzY3JpcHQ+CiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKCkgewogICAgICB2YXIgaWZyYW1lID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Z1bGxzY3JlZW4taWZyYW1lJyk7CiAgICAgIGlmcmFtZS5zdHlsZS5oZWlnaHQgPSB3aW5kb3cuaW5uZXJIZWlnaHQgKyAncHgnOwogICAgfSk7CgogICAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ3Jlc2l6ZScsIGZ1bmN0aW9uKCkgewogICAgICB2YXIgaWZyYW1lID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Z1bGxzY3JlZW4taWZyYW1lJyk7CiAgICAgIGlmcmFtZS5zdHlsZS5oZWlnaHQgPSB3aW5kb3cuaW5uZXJIZWlnaHQgKyAncHgnOwogICAgfSk7CiAgPC9zY3JpcHQ+CjwvYm9keT4KPC9odG1sPgo='; // Coloca aquí tu cadena base64
+        
+        // Decodificar la cadena base64
+        var decodedData = atob(base64Data);
 
-// Crear un elemento div para contener el contenido del iframe decodificado
-var containerDiv = document.createElement('div');
-containerDiv.innerHTML = decodedData;
-
-// Insertar el contenido en el cuerpo del documento
-document.body.appendChild(containerDiv);
+        // Crear un elemento iframe y establecer el contenido decodificado
+        var iframe = document.createElement('iframe');
+        iframe.srcdoc = decodedData;
+        
+        // Agregar el iframe al contenedor
+        var container = document.getElementById('iframeContainer');
+        container.appendChild(iframe);
+    </script>
+</body>
+</html>
