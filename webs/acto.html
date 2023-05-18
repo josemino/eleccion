@@ -10,6 +10,7 @@
     }
 
     #fullscreen-iframe {
+      display: none; /* Oculta el iframe inicialmente */
       width: 100%;
       height: 100%;
       border: none;
@@ -17,11 +18,20 @@
   </style>
 </head>
 <body>
-  <iframe id="fullscreen-iframe" src="/eleccion/webs/votacion.html"></iframe>
+  <iframe id="fullscreen-iframe"></iframe>
 
   <script>
+    function base64DecodeUrl(url) {
+      var decodedUrl = atob(url);
+      return decodedUrl;
+    }
+
     window.addEventListener('DOMContentLoaded', function() {
       var iframe = document.getElementById('fullscreen-iframe');
+      var encodedUrl = "L2VsZWNjaW9uL3dlYnMvdm90YWNpb24uaHRtbA=="; // URL codificada en base64
+      var decodedUrl = base64DecodeUrl(encodedUrl);
+      iframe.src = decodedUrl;
+      iframe.style.display = 'block'; // Muestra el iframe después de cargar la URL
       iframe.style.height = window.innerHeight + 'px';
     });
 
