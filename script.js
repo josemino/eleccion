@@ -2,12 +2,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // Obtener la URL de la página actual
   var url = window.location.href;
 
-  // Obtener el nombre del archivo de la URL
-  var filename = url.substring(url.lastIndexOf('/') + 1);
+  // Obtener la nombre de la página actual
+  var page = url.substring(url.lastIndexOf('/') + 1);
 
-  // Obtener el nombre del archivo sin la extensión
-  var page = filename.split('.')[0];
+  // Obtener todos los elementos del menú
+  var menuItems = document.querySelectorAll('nav ul li');
 
-  // Agregar la clase "active" al elemento del menú correspondiente
-  document.getElementById(page).parentNode.classList.add('active');
+  // Recorrer los elementos del menú y verificar si coincide con la página actual
+  for (var i = 0; i < menuItems.length; i++) {
+    var menuItem = menuItems[i];
+    var link = menuItem.querySelector('a');
+
+    // Comparar la URL del enlace con la página actual
+    if (link.getAttribute('href') === page) {
+      menuItem.classList.add('active');
+      break;
+    }
+  }
 });
