@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Acto de elección</title>
   <style>
     html, body {
       margin: 0;
@@ -11,15 +9,7 @@
       height: 100%;
     }
 
-    #iframeContainer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    #iframeContainer iframe {
+    #fullscreen-iframe {
       width: 100%;
       height: 100%;
       border: none;
@@ -27,33 +17,27 @@
   </style>
 </head>
 <body>
-  <div id="iframeContainer"></div>
+  <iframe id="fullscreen-iframe" src="/eleccion/webs/votacion.html"></iframe>
 
   <script>
-    // Función para decodificar el código del iframe y mostrarlo en la página
-    function decodificarIframe() {
-      var codigoIframe = '&#x3C;&#x69;&#x66;&#x72;&#x61;&#x6D;&#x65; &#x69;&#x64;&#x3D;&#x22;&#x66;&#x75;&#x6C;&#x6C;&#x73;&#x63;&#x72;&#x65;&#x65;&#x6E;&#x2D;&#x69;&#x66;&#x72;&#x61;&#x6D;&#x65;&#x22; &#x73;&#x72;&#x63;&#x3D;&#x22;&#x2F;&#x65;&#x6C;&#x65;&#x63;&#x63;&#x69;&#x6F;&#x6E;&#x2F;&#x77;&#x65;&#x62;&#x73;&#x2F;&#x76;&#x6F;&#x74;&#x61;&#x63;&#x69;&#x6F;&#x6E;&#x2E;&#x68;&#x74;&#x6D;&#x6C;&#x22;&#x3E;&#x3C;&#x2F;&#x69;&#x66;&#x72;&#x61;&#x6D;&#x65;&#x3E;
-';
-      var decodedCodigoIframe = decodeURIComponent(codigoIframe);
-
-      var iframeContainer = document.getElementById('iframeContainer');
-      iframeContainer.innerHTML = decodedCodigoIframe;
-    }
-
-    // Llamada a la función para decodificar y mostrar el iframe
-    decodificarIframe();
-  </script>
-
-  <script>
-    // Ajustar la altura del iframe al cargar y redimensionar la ventana
-    function ajustarAlturaIframe() {
+    window.addEventListener('DOMContentLoaded', function() {
       var iframe = document.getElementById('fullscreen-iframe');
       iframe.style.height = window.innerHeight + 'px';
-    }
 
-    window.addEventListener('DOMContentLoaded', ajustarAlturaIframe);
-    window.addEventListener('resize', ajustarAlturaIframe);
+      // Obtener el contenido del iframe
+      var iframeContent = iframe.contentDocument.documentElement.outerHTML;
+
+      // Codificar el contenido a base64
+      var base64Content = btoa(unescape(encodeURIComponent(iframeContent)));
+
+      // Reemplazar el contenido del iframe con el código base64
+      iframe.src = "data:text/html;base64," + base64Content;
+    });
+
+    window.addEventListener('resize', function() {
+      var iframe = document.getElementById('fullscreen-iframe');
+      iframe.style.height = window.innerHeight + 'px';
+    });
   </script>
 </body>
 </html>
-
