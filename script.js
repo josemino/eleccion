@@ -9,5 +9,5 @@ document.addEventListener('DOMContentLoaded', function() {
   var page = filename.split('.')[0];
 
   // Agregar la clase "active" al elemento del menú correspondiente
-  document.getElementById(page).classList.add('active');
+  document.getElementById(page).parentNode.classList.add('active');
 });
