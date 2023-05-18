@@ -1,44 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100%;
-    }
-
-    #fullscreen-iframe {
-      display: none; /* Oculta el iframe inicialmente */
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style>
+  <title>Acto</title>
 </head>
 <body>
-  <iframe id="fullscreen-iframe"></iframe>
+  <iframe id="miIframe" width="500" height="500"></iframe>
 
   <script>
-    function base64DecodeUrl(url) {
-      var decodedUrl = atob(url);
-      return decodedUrl;
-    }
+    // Obtén una referencia al elemento <iframe>
+    var iframe = document.getElementById('miIframe');
 
-    window.addEventListener('DOMContentLoaded', function() {
-      var iframe = document.getElementById('fullscreen-iframe');
-      var encodedUrl = "L2VsZWNjaW9uL3dlYnMvdm90YWNpb24uaHRtbA=="; // URL codificada en base64
-      var decodedUrl = base64DecodeUrl(encodedUrl);
-      iframe.src = decodedUrl;
-      iframe.style.display = 'block'; // Muestra el iframe después de cargar la URL
-      iframe.style.height = window.innerHeight + 'px';
-    });
-
-    window.addEventListener('resize', function() {
-      var iframe = document.getElementById('fullscreen-iframe');
-      iframe.style.height = window.innerHeight + 'px';
-    });
+    // Establece la URL de la página que deseas cargar dentro del iframe
+    iframe.src = '/eleccion/webs/eleccion.html';
   </script>
 </body>
 </html>
