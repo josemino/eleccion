@@ -8,7 +8,21 @@
     <title>Votar</title>
     <meta name="description" content="">
     <link rel="stylesheet" href="../style.css">
-    <script src="../script.js"></script>
+	<style>
+    #myIframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+    <script>
+    function resizeIframe() {
+      var iframe = document.getElementById("myIframe");
+      iframe.style.height = window.innerHeight + "px";
+    }
+
+    window.addEventListener("resize", resizeIframe);
+  </script>
 </head>
 
 <body>
@@ -29,7 +43,7 @@
 	</section>
 	<section id="pageContent">
 		<main role="main">
-			<iframe id="fullscreen-iframe" src="/eleccion/webs/votacion.html"></iframe>
+			<iframe id="myIframe" src="/eleccion/webs/votacion.html"></iframe>
 			<article>
 				<h2 style="text-align: justify;">En esta página podrás participar de la Elección del Orden Estudiantil para la integración en el Consejo de Participación Liceal.</h2>
 				<p style="text-align: justify;"><h2>Se recomienda primero, visitar la página "Instructivo" donde se aclaran aspectos importantes a tener en cuenta al momento de votar.</h2></p>
