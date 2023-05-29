@@ -5,7 +5,7 @@ body {
 #kiko-slider {
     font-family: sans-serif;
     margin: auto;
-    background-color: white;
+    background-color: #53afa4;
     max-width: 800px;
     width: 100%;
     padding: 30px;
@@ -48,8 +48,8 @@ li {
 
 #kiko-slider>ul.slider li img {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: 400px;
+    object-fit: fill;
 }
 
 #kiko-slider>ul.slider li:first-child {
@@ -64,7 +64,7 @@ li {
 
 #kiko-slider>.menu {
     text-align: center;
-    margin: 20px;
+    margin: 105px 0px 10px 0px;
 }
 
 #kiko-slider>.menu li {
